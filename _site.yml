@@ -1,0 +1,27 @@
+name: "Felipe Pena Mosca"
+header-includes: 
+  \usepackage{graphicx}
+  \usepackage{float}
+output_dir: "."
+navbar:
+  title: "Home"
+  right:
+    - text: "About"
+      href: about.html
+    - text: "Professional Documents"
+      menu:
+      - text: "Resume"
+        href: resume.html
+    - text: "Recent work"
+      menu:
+      - text: "Flex dashboard"
+        href: flexdashboard_instacart.html
+    - icon: fa-envelope fa-lg
+      href: mailto:<penam003@umn.edu>
+    - icon: fa-github fa-lg
+      href: http://github.com/fepenamosca/
+    - icon: fa-linkedin fa-lg
+      href: https://www.linkedin.com/in/felipe-pe%C3%B1a-013a7810b/
+output:  
+   html_document:
+    theme: flatly

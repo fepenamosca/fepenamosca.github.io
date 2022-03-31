@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Felipe Pena Mosca</title>
+
+<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">About</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Professional Documents
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="resume.html">Resume</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Recent work
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="flexdashboard_instacart.html">Flex dashboard</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="mailto:&lt;penam003@umn.edu&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/fepenamosca/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.linkedin.com/in/felipe-pe%C3%B1a-013a7810b/">
+    <span class="fa fa-linkedin fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Felipe Pena Mosca</h1>
+
+</div>
+
+
+<div id="contact" class="section level2">
+<h2>Contact Info</h2>
+<ul>
+<li><i class="fa fa-envelope"></i> <a href="mailto:penam003@umn.edu" class="email">penam003@umn.edu</a></li>
+<li><i class="fa fa-github"></i> <a href="https://github.com/fepenamosca">github.com/fepenamosca</a></li>
+</ul>
+</div>
+<div id="education" class="section level2">
+<h2><i class="fa fa-book"></i> <strong>Education</strong></h2>
+<ul>
+<li><p><strong>Doctorate of Philosophy</strong><br />
+<i class="fa fa-compass"></i> University of Minnesota, United States<br />
+<i class="fa fa-calendar"></i> August 2019 - Present<br />
+Major: Veterinary Medicine, Minor: Epidemiology<br />
+Advisers: Luciano Caixeta &amp; Sandra Godden</p></li>
+<li><p><strong>Master in Science</strong><br />
+<i class="fa fa-compass"></i>Universidad de la República, Uruguay<br />
+<i class="fa fa-calendar"></i> April 2016 - May 2019<br />
+Major: Animal health<br />
+Advisers: Ana Meikle &amp; Elena de Torres</p></li>
+<li><p><strong>Doctor in Veterinary Medicine</strong><br />
+<i class="fa fa-compass"></i>Universidad de la República, Uruguay<br />
+<i class="fa fa-calendar"></i>March 2010 - September 2015<br />
+Advisers: Victoria de Brun &amp; Ana Meikle</p></li>
+</ul>
+</div>
+<div id="professional-research-teaching-experience" class="section level2">
+<h2><i class="fa fa-laptop"></i> <strong>Professional Research &amp; Teaching experience</strong></h2>
+<ul>
+<li><strong>Graduate Research Assistant</strong> University of Minnesota, United States August 2019 - Present</li>
+</ul>
+<p>I currently work in planification, sampling, laboratory and data analysis in observational studies with the aim of improving dairy cows health and welfare; and find novel solutions for existent problems in dairy farms.</p>
+<ul>
+<li><strong>Milk Quality Technical Support</strong><br />
+Conaprole, Uruguay<br />
+July 2017 - July 2019</li>
+</ul>
+<p>I worked for Conaprole (largest dairy industry in Uruguay) in Florida (Uruguay) advising dairy farmers about milk quality and mastitis control in dairy farms.</p>
+<ul>
+<li><strong>Research Assistant</strong><br />
+Universidad de la República, Uruguay<br />
+January 2016 - July 2019</li>
+</ul>
+<p>I worked in the veterinary college at Universidad de la República for more than three years doing research, assisting in teaching veterinary college students and extension for dairy farmers.</p>
+<ul>
+<li><strong>Veterinary Practitioner</strong><br />
+Uruguay<br />
+October 2015 – July 2019</li>
+</ul>
+<p>My work as a veterinarian was focused on dairy cows’ health and bovine mastitis control in dairy farms.</p>
+<ul>
+<li><strong>Veterinary Advising</strong><br />
+La Constancia, Uruguay<br />
+May 2015 - July 2015 &amp; August 2018 - February 2019</li>
+</ul>
+<p>I worked in pig health, reproduction and management in different parts of the farm.</p>
+<ul>
+<li><strong>Undergraduate Research Assistant</strong><br />
+Universidad de la República, Uruguay<br />
+August 2014 - July 2015</li>
+</ul>
+<p>I investigated the association between undernutrition and reproduction in sheep. I acquired training in techniques of radioimmunoassay, Immunoradiometric assay and real time PCR.</p>
+</div>
+<div id="honors-awards" class="section level2">
+<h2><i class="fa fa-award"></i> Honors &amp; Awards</h2>
+<ul>
+<li><p><strong>Veterinary Medicine program travel award</strong>, University of Minnesota, 2021.</p></li>
+<li><p><strong>Graduate Student Professional Development Program</strong>, Mn Drive Global Food Ventures, USA, 2021.</p></li>
+<li><p><strong>Fulbright Scholarship</strong>, Fulbright Comission, Uruguay, 2018.</p></li>
+<li><p><strong>Scholarship for Young Teachers and Researchers</strong>, Santander, Uruguay, 2017.</p></li>
+<li><p><strong>Graduate scholarship</strong>, ANII (National research and innovation agency), Uruguay, 2016.</p></li>
+<li><p><strong>Introduction to research scholarship</strong>, ANII (National research and innovation agency), Uruguay, 2014.</p></li>
+</ul>
+</div>
+<div id="publications" class="section level2">
+<h2><i class="fa fa-book"></i> <strong>Publications</strong></h2>
+<ul>
+<li><h4 id="peer-reviewed"><strong>Peer-reviewed</strong></h4></li>
+</ul>
+<div id="peña-mosca-f.-dean-c.-ray-t.-heins-b.-pinedo-p.-machado-v.-caixeta-l.-noyes-n.-2022.-could-udder-microbiome-based-products-be-used-as-an-alternative-strategy-for-mastitis-treatment-and-prevention.-eorganic-.-httpeorganic.orgnode35010" class="section level5">
+<h5>- <strong>Peña Mosca F.</strong>, Dean C., Ray T., Heins B., Pinedo P. , Machado V., Caixeta L. , Noyes N. (2022). Could Udder Microbiome-based Products be Used as an Alternative Strategy for Mastitis Treatment and Prevention?. eOrganic . <a href="http://eorganic.org/node/35010" class="uri">http://eorganic.org/node/35010</a></h5>
+</div>
+<div id="dean-c.-peña-mosca-f.-ray-t.-heins-b.-pinedo-p.-machado-v.-caixeta-l.-noyes-n.-2021.-what-is-the-microbiome-and-why-is-it-important-for-organic-livestock-production.-eorganic.-httpeorganic.orgnode34373" class="section level5">
+<h5>- Dean C., <strong>Peña Mosca F.</strong>, Ray T., Heins B., Pinedo P. , Machado V., Caixeta L. , Noyes N. (2021). What is the Microbiome and Why is it Important for Organic Livestock Production?. eOrganic. <a href="http://eorganic.org/node/34373" class="uri">http://eorganic.org/node/34373</a></h5>
+<ul>
+<li><h4 id="published-in-conference-proceedings"><strong>Published in conference proceedings</strong></h4></li>
+</ul>
+</div>
+<div id="pena-mosca-f.-florentino-c.c.-rocha-c.-feijoo-v.c.-masic-a.-borchers-m.-asper-d.-caixeta-l.s.-2022-.investigation-of-the-inclusion-of-on-farm-measurement-of-somatic-cell-count-and-differential-cell-count-in-algorithms-to-predict-cows-with-intramammary-infections-at-dry-off.-nmc-61st-annual-meeting-proceedings." class="section level5">
+<h5>- <strong>Pena Mosca, F.</strong>, Florentino, C.C., Rocha, C., Feijoo, V.C., Masic, A., Borchers, M., Asper, D., Caixeta, L.S. (2022) .Investigation of the inclusion of on-farm measurement of somatic cell count and differential cell count in algorithms to predict cows with intramammary infections at dry-off. NMC 61st Annual Meeting Proceedings.</h5>
+</div>
+<div id="florentino-c.c.-peña-mosca-f.-ruch-m.-mourad-m.m.-tikofsky-l.-godden-s.m.-caixeta-l.s.-2022.-the-effects-of-administration-of-acidogenic-boluses-at-dry-off-in-udder-health-and-milk-yield-in-early-lactation-interim-results.-nmc-61st-annual-meeting-proceedings." class="section level5">
+<h5>- Florentino, C.C., <strong>Peña Mosca, F.</strong>, Ruch, M., Mourad, M.M., Tikofsky, L., Godden, S.M., Caixeta, L.S. (2022). The effects of administration of acidogenic boluses at dry-off in udder health and milk yield in early lactation – interim results. NMC 61st Annual Meeting Proceedings.</h5>
+</div>
+<div id="peña-mosca-f.-dean-c.-ray-t.-heins-b.-pinedo-p.-machado-v.s.-caixeta-l.s.-noyes-n.r.-2021.-association-between-bacterial-group-and-persistence-in-the-mammary-gland-in-early-lactation-primiparous-cows.-conference-of-research-workers-in-animal-diseases." class="section level5">
+<h5>- <strong>Peña Mosca, F.</strong>, Dean, C., Ray, T., Heins, B., Pinedo, P., Machado, V.S., Caixeta, L.S., Noyes, N.R. (2021). Association between bacterial group and persistence in the mammary gland in early lactation primiparous cows. Conference of Research Workers in Animal Diseases.</h5>
+</div>
+<div id="dean-c.-peña-mosca-f.-fernandes-l.-sharpe-k.-manriquez-d.-doster-e.-antunes-jr-a.m.-calles-v.f.-bauman-c.-wehri-t.-heins-b.-pinedo-p.-machado-v.s.-caixeta-l.s.-noyes-n.r.-2021.-longitudinal-survey-of-the-bovine-teat-microbiome.-conference-of-research-workers-in-animal-diseases." class="section level5">
+<h5>- Dean, C., <strong>Peña Mosca F.</strong>, Fernandes, L., Sharpe, K., Manriquez, D., Doster, E., Antunes Jr, A.M., Calles, V.F., Bauman, C., Wehri, T., Heins, B., Pinedo, P., Machado, V.S., Caixeta , L.S., Noyes, N.R., (2021). Longitudinal survey of the bovine teat microbiome. Conference of Research Workers in Animal Diseases.</h5>
+</div>
+<div id="peña-mosca-f.-dean-c.j.-caixeta-l.s.-ray-t.-heins-b.-machado-v.s.-pinedo-p.j.-noyes-n.r.-2021.-description-of-the-intramammary-infections-dynamics-in-early-lactation-heifer-on-organic-dairy-farms.-aabp-54th-annual-conference." class="section level5">
+<h5>- <strong>Peña Mosca, F.</strong>, Dean, C.J., Caixeta, L.S., Ray, T., Heins, B., Machado, V.S., Pinedo, P.J., Noyes, N.R. (2021). Description of the intramammary infections dynamics in early lactation heifer on organic dairy farms. AABP 54th Annual conference.</h5>
+</div>
+<div id="rial-c.-laplacette-a.l.-perez-m.m.-florentino-c.c.-peña-mosca-f.-caixeta-l.s.-giordano-j.o.-2021.-pattern-of-rumination-time-and-physical-activity-captured-by-an-ear-attached-sensor-around-the-time-of-clinical-diagnosis-of-metritis-and-mastitis-in-dairy-cows.-adsa-virtual-conference." class="section level5">
+<h5>- Rial, C., Laplacette, A.L., Perez, M.M., Florentino, C.C., <strong>Peña Mosca, F.</strong>, Caixeta, L.S., Giordano, J.O. (2021). Pattern of rumination time and physical activity captured by an ear-attached sensor around the time of clinical diagnosis of metritis and mastitis in dairy cows. ADSA Virtual Conference.</h5>
+</div>
+<div id="rial-c.-laplacette-a.l.-perez-m.m.-florentino-c.c.-peña-mosca-f.-caixeta-l.s.-giordano-j.o.-2021-pattern-of-rumination-time-and-physical-activity-captured-by-an-ear-attached-sensor-before-during-and-after-the-clinical-diagnosis-of-metabolic-digestive-disorders-in-lactating-dairy-cows.-adsa-virtual-conference." class="section level5">
+<h5>- Rial, C., Laplacette, A.L., Perez, M.M., Florentino, C.C., <strong>Peña Mosca, F.</strong>, Caixeta, L.S., Giordano, J.O. (2021) Pattern of rumination time and physical activity captured by an ear-attached sensor before, during and after the clinical diagnosis of metabolic-digestive disorders in lactating dairy cows”. ADSA Virtual Conference.</h5>
+</div>
+<div id="peña-mosca-f.-dean-c.j.-heins-b.j.-machado-v.s.-pinedo-p.j.-noyes-n.r.-caixeta-l.s.2021.-description-of-staphylococcus-sp.-intramammary-infections-in-early-lactation-primiparous-cows-on-organic-dairy-farms.-adsa-virtual-conference." class="section level5">
+<h5>- <strong>Peña Mosca, F.</strong>, Dean, C.J., Heins, B.J., Machado, V.S., Pinedo, P.J., Noyes, N.R., Caixeta, L.S.(2021). Description of Staphylococcus sp. intramammary infections in early lactation primiparous cows on organic dairy farms. ADSA Virtual Conference.</h5>
+</div>
+<div id="florentino-c.c.-rodriguez-z.-shepley-e.-peña-mosca-f.-cramer-g.-rial-c.-laplacette-a.-borchers-k.-asper-d.-borchers-m.-giordano-j.o.-caixeta-l.s.-2021.-does-rumination-behavior-in-the-first-week-postpartum-impact-the-association-between-beta-hydroxybutyrate-and-early-lactation-milk-yield.-adsa-virtual-conference." class="section level5">
+<h5>- Florentino, C.C., Rodriguez, Z., Shepley, E., <strong>Peña Mosca F.</strong>, Cramer, G., Rial, C., Laplacette, A., Borchers, K., Asper, D., Borchers, M., Giordano, J.O., Caixeta, L.S. (2021). Does rumination behavior in the first week postpartum impact the association between beta-hydroxybutyrate and early lactation milk yield?. ADSA Virtual Conference.</h5>
+</div>
+<div id="peña-mosca-f.-godden-sm.-royster-e.-crooker-b.a.-raynor-p.-janni-k.-2021-management-of-recycled-manure-solids-bedding-on-midwest-dairy-farms.-part-2-relationship-between-processing-method-bedding-characteristics-and-bedding-bacterial-count.-nmc-60th-annual-meeting-proceedings." class="section level5">
+<h5>- <strong>Peña Mosca F.</strong>, Godden S,M., Royster E., Crooker B.A., Raynor P., Janni, K. (2021) Management of Recycled Manure Solids Bedding on Midwest Dairy Farms. Part 2 – Relationship Between Processing Method, Bedding Characteristics and Bedding Bacterial Count. NMC 60th Annual Meeting Proceedings.</h5>
+</div>
+<div id="godden-s.m.-peña-mosca-f.-royster-e.-crooker-b.a.-raynor-p.-janni-k.-2021-management-of-recycled-manure-solids-bedding-on-midwest-dairy-farms.-part-1-relationship-between-processing-method-udder-health-and-production-and-bedding-bacterial-counts.-nmc-60th-annual-meeting-proceedings." class="section level5">
+<h5>- Godden S.M., <strong>Peña Mosca F.</strong>, Royster E., Crooker B.A., Raynor P., Janni, K. (2021) Management of Recycled Manure Solids Bedding on Midwest Dairy Farms. Part 1 – Relationship between processing method, udder health and production, and bedding bacterial counts. NMC 60th Annual Meeting Proceedings.</h5>
+</div>
+<div id="peña-mosca-f.-dean-c.-ray-t.-doster-e-fernandes-l.-antunes-a.-sharpe-k.-feijoo-v.-baumann-c.-wehri-t.-heins-b.-pinedo-p.-machado-v.-caixeta-l.-noyes-n.-2021.-associations-between-intramammary-infections-caused-by-non-aureus-staphylococci-streptococcus-spp.-and-streptococcus-like-organisms-and-staphylococcus-aureus-in-early-lactation-on-organic-dairy-cows.-nmc-60th-annual-meeting-proceedings." class="section level5">
+<h5>- <strong>Peña Mosca F.</strong>, Dean C., Ray T., Doster E, , Fernandes L., Antunes A., Sharpe K., Feijoo V., Baumann C., Wehri T., Heins B. , Pinedo P. , Machado V., Caixeta L. , Noyes N. (2021). Associations between intramammary infections caused by non-aureus Staphylococci, Streptococcus spp. and Streptococcus-like organisms and Staphylococcus aureus in early lactation on organic dairy cows. NMC 60th Annual Meeting Proceedings.</h5>
+</div>
+<div id="godden-s.m.-peña-mosca-f.-royster-e.-crooker-b.a.-raynor-p.-jan.ni-k.-2021-investigation-of-the-relationship-between-method-of-processing-recycled-manure-solids-bedding-and-udder-health-and-production-on-midwest-dairy-farms.-aabp-53rd-annual-conference." class="section level5">
+<h5>- Godden S.M., <strong>Peña Mosca F.</strong>, Royster E., Crooker B.A., Raynor P., Jan.ni, K. (2021) Investigation of the Relationship Between Method of Processing Recycled Manure Solids Bedding and Udder Health and Production on Midwest Dairy Farms. AABP 53rd Annual conference.</h5>
+</div>
+<div id="peña-mosca-f.-de-torres-e.-2020-udder-health-during-transition-period-in-primiparous-and-multiparous-cows-in-uruguay.-nmc-59th-annual-meeting-proceedings." class="section level5">
+<h5>- <strong>Peña Mosca F.</strong>, de Torres E. (2020) Udder health during transition period in primiparous and multiparous cows in Uruguay. NMC 59th Annual Meeting Proceedings.</h5>
+</div>
+<div id="de-torres-e.-peña-mosca-f.-vidart-m.-larumbe-r.-2019-microorganismos-asociados-a-mastitis-clínica-en-uruguay.-latinoamerican-mastitis-network-3rd-annual-meeting." class="section level5">
+<h5>- de Torres E., <strong>Peña Mosca F.</strong>, Vidart M., Larumbe R. (2019) Microorganismos asociados a mastitis clínica en Uruguay. Latinoamerican mastitis network 3rd annual meeting.</h5>
+</div>
+<div id="peña-mosca-f.-de-torres-elena-garcía-pintos-m.-villanueva-a.-1-silveira-j.m.-2019.-relación-entre-la-salud-de-la-ubre-en-la-lactancia-y-el-recuento-celular-individual-y-el-aislamiento-bacteriológico-en-el-secado.-latinoamerican-mastitis-network-3rd-anual-meeting." class="section level5">
+<h5>- <strong>Peña Mosca F.</strong>, de Torres Elena, García Pintos M., Villanueva A. 1 Silveira J.M. (2019). Relación entre la salud de la ubre en la lactancia y el recuento celular individual y el aislamiento bacteriológico en el secado. Latinoamerican mastitis network 3rd anual meeting.</h5>
+</div>
+<div id="de-torres-e.vera-p.-benard-l.-peña-mosca-f.-vidart-m.-larumbe-r.-muñoz-m.-2019-evaluation-of-the-monthly-incidence-rate-of-clinical-mastitis-in-two-dairy-operations-of-uruguay.-nmc-58th-annual-meeting-proceedings." class="section level5">
+<h5>- de Torres E.,Vera P., Benard L., <strong>Peña Mosca F.</strong>, Vidart M., Larumbe R., Muñoz M. (2019) Evaluation of the Monthly Incidence Rate of Clinical Mastitis in Two Dairy Operations of Uruguay. NMC 58th Annual Meeting Proceedings.</h5>
+</div>
+<div id="peña-mosca-f.-meikle-a.-de-torres-e.-2018-effect-of-stocking-rate-and-grazing-management-on-udder-health-in-dairy-cows.-nmc-milano-the-international-bovine-mastitis-conference-proceedings." class="section level5">
+<h5>- <strong>Peña Mosca, F.</strong>, Meikle, A., de Torres, E. (2018) Effect of stocking rate and grazing management on udder health in dairy cows. NMC Milano, The international bovine mastitis conference proceedings.</h5>
+</div>
+<div id="peña-mosca-f.-martinez-r.-lamanna-a.-de-torres-e.-2018-heat-stress-mitigation-measures-and-udder-health-in-dairy-cows.-nmc-milano-the-international-bovine-mastitis-conference-proceedings-milan-italy." class="section level5">
+<h5>- <strong>Peña Mosca F.</strong>, Martinez R., Lamanna A., de Torres E. (2018) Heat stress mitigation measures and udder health in dairy cows. NMC Milano, The international bovine mastitis conference proceedings, Milan, Italy.</h5>
+</div>
+<div id="peña-mosca-f.-de-torres-e.-2017.-estrés-calórico-y-salud-mamaria-en-vacas-lecheras.-10th-veterinary-technical-seminars-veterinary-college-univeridad-de-la-república-uruguay." class="section level5">
+<h5>- <strong>Peña Mosca F.</strong>, de Torres, E. (2017). Estrés calórico y salud mamaria en vacas lecheras. 10th Veterinary Technical seminars, Veterinary College, Univeridad de la República, Uruguay.</h5>
+<ul>
+<li><h4 id="non-peer-reviewed"><strong>Non peer-reviewed</strong></h4></li>
+</ul>
+</div>
+<div id="de-torres-e.-fariña-s.-hirigoyen-d.-lópez-t.-martinez-r.-morales-t.-peña-mosca-f.-pla-m.-torres-i.-viana-h.-2016-sistemas-para-prevencion-y-control-de-mastitis.-national-institute-of-agricultural-research.-httpwww.ainfo.inia.uydigitalbitstreamitem63811sistema-de-gestion-para-el-control-y-prevencion-mastitis.-2016.pdf" class="section level5">
+<h5>- de Torres E., Fariña, S., Hirigoyen D., López T., Martinez R., Morales T., <strong>Peña Mosca F.</strong>, Pla M., Torres I., Viana H. (2016) Sistemas para prevencion y control de mastitis. National institute of agricultural research. <a href="http://www.ainfo.inia.uy/digital/bitstream/item/6381/1/Sistema-de-gestion-para-el-control-y-prevencion-mastitis.-2016.pdf" class="uri">http://www.ainfo.inia.uy/digital/bitstream/item/6381/1/Sistema-de-gestion-para-el-control-y-prevencion-mastitis.-2016.pdf</a></h5>
+</div>
+<div id="garín-g.-peña-mosca-f.-2015-subnutrición-en-ovinos-efectos-sobre-la-preñez-y-función-uterina.-facultad-de-veterinaria-universidad-de-la-república.-tesis-de-grado.httpswww.colibri.udelar.edu.uyjspuihandle12345678910259" class="section level5">
+<h5>- Garín G., <strong>Peña Mosca, F.</strong> (2015) Subnutrición en ovinos: efectos sobre la preñez y función uterina. Facultad de Veterinaria, Universidad de la República. Tesis de grado.https://www.colibri.udelar.edu.uy/jspui/handle/123456789/10259</h5>
+</div>
+</div>
+<div id="additional-training" class="section level2">
+<h2><i class="fa fa-flask"></i> <strong>Additional training</strong></h2>
+<ul>
+<li><p><strong>Internship in Milk Quality laboratory</strong><br />
+<i class="fa fa-compass"></i>Universidad de Concepción, Chile.<br />
+<i class="fa fa-calendar"></i>May 2018.</p></li>
+<li><p><strong>Internship in Laboratory Diagnosis of Infectious Diseases</strong><br />
+<i class="fa fa-compass"></i>Universidad de Buenos Aires, Argentina.<br />
+<i class="fa fa-calendar"></i>May 2016.</p></li>
+<li><p><strong>Internship in poultry production</strong> <i class="fa fa-compass"></i>Florida Agrarian School, Uruguay.<br />
+<i class="fa fa-calendar"></i>November 2013.</p></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

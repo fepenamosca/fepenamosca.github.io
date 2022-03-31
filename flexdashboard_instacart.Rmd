@@ -1,0 +1,202 @@
+---
+title: "Instacart"
+author: "Felipe Pena Mosca "
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include = FALSE, echo = FALSE}
+library(tidyverse)
+library(lubridate)
+library(gt)
+library(paletteer)
+library(plotly)
+library(flexdashboard)
+library(viridis)
+
+#Working directory for .RMD
+knitr::opts_knit$set(echo = TRUE,
+                     root.dir = rprojroot::find_rstudio_root_file())
+
+#Controlling figure output in markdown
+knitr::opts_chunk$set(
+#  fig.height =   
+  fig.width = 6,
+#  fig.asp = .5,
+  out.width = "90%",
+#  out.height = 
+ fig.align  = "center",
+  cache = FALSE,
+  eval  = TRUE,
+  echo  = TRUE,
+  warning = FALSE
+)
+
+#Set Theme for ggplot2
+theme_set(theme_bw() + theme(plot.title = element_text(hjust = 0.5), legend.position = "none"))
+
+#Set Scientific notation output and decimal places for knitr
+options(scipen = 999)
+options(digits = 4)
+options(dplyr.summarise.inform = FALSE)
+
+```
+
+
+```{r data_read, include = FALSE}
+#Read in the nyc airbnb data set
+instacart.df <- read_csv("./data/instacart.csv")
+  
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r,echo=FALSE}
+
+# Create ggplot object
+
+insta.plot.1 <- instacart.df %>%
+group_by(aisle) %>%
+summarise(n = n()) %>%
+ungroup() %>%
+mutate(
+aisle = str_to_title(aisle) %>%
+as.factor() %>%
+fct_reorder(n, .desc = FALSE)
+) %>%
+arrange(desc(n)) %>%
+slice(1:20) %>%
+ggplot(aes(x = n, y = aisle, fill = n)) +
+geom_bar(stat = "identity", width = 1, colour = "black") +
+labs(
+y = "Aisle",
+x = "# of Orders",
+title = "# of Orders by top 20 Aisles"
+) +
+theme(legend.position = "right",
+axis.text.y = element_text(color = "black",
+size = 10,
+hjust = 1)) +
+scale_fill_viridis_c("# Orders") 
+
+# Convert ggplot into a plotly object
+
+ggplotly(insta.plot.1, tooltip = "text")
+
+```
+
+Column {data-width=650}
+--------------------------------------------------------------------------------
+
+### Chart B
+
+```{r,echo=FALSE}
+
+# Create ggplot object
+
+top_6 <- instacart.df %>%
+pull(department) %>% #extract aisle
+fct_count() %>% #returns tibble with column:f (factor). n (count)
+arrange(desc(n)) %>% #put in descending order from greatest to least
+slice(1:3) %>% #top5
+pull(f)
+
+insta.plot.2 <- instacart.df %>%
+filter(department %in% top_6) %>%
+group_by(aisle, department) %>%
+summarise(n = n()) %>%
+arrange(desc(n)) %>%
+group_by(department) %>%
+slice(1:3) %>%
+ungroup() %>%
+mutate(
+department = str_to_title(department) %>%
+as_factor() %>%
+fct_reorder(n, .desc = TRUE) %>%
+str_c(as.numeric(.), ., sep = ". "),
+aisle = str_to_title(aisle) %>%
+as_factor() %>%
+fct_reorder2(department, n, .desc = FALSE)
+) %>%
+ggplot(aes(x = n, y = aisle, fill = department)) +
+geom_bar(stat = "identity", width = 1, colour = "black") +
+labs(
+y = "Aisle",
+x = "# of Orders",
+title = " # Orders of Top 3 Aisles in the Top 3 Departments",
+fill = "Top 3 Departments"
+) +
+theme(legend.position = "right",
+axis.text.y = element_text(color = "black",
+size = 10,
+hjust = 1)) +
+scale_fill_viridis(discrete=TRUE)+
+theme(axis.text.x = element_text(angle = 45,
+vjust = 1.24,
+hjust = 1.2,
+size = 10),
+axis.text.y = element_text(size = 10))
+
+# Convert into plotly object
+
+ggplotly(insta.plot.2, tooltip = "text")
+
+```
+
+### Chart C
+
+```{r,echo=FALSE}
+
+# Organize data for analysis
+
+top_5_aisles <- instacart.df %>%
+pull(aisle) %>% #extract aisle
+fct_count() %>% #returns tibble with column:f (factor). n (count)
+arrange(desc(n)) %>% #put in descending order from greatest to least
+slice(1:5) %>% #top5
+pull(f) #Pull the aisle column obs
+#Data wrangle into table form (save for plot below)
+top_5.df <- instacart.df %>%
+filter(aisle %in% top_5_aisles) %>% #Filter to retain only top 5 aisles
+group_by(aisle, product_name) %>%
+summarise(N = n()) %>%
+arrange(desc(N)) %>% #arrange in descending count order (for display in the next line)
+group_by(aisle) %>% #group by + slice 1:5 = give me the top 5 in each aisle (ordered above)
+slice(1:5) %>% #top 5 per aisle
+ungroup() %>% #need to ungroup to do non-groupwise operations
+mutate(
+aisle = str_to_title(aisle) %>%
+as.factor() %>%
+fct_reorder(N, max, .desc = TRUE) %>%
+str_c(as.numeric(.), ., sep = ". ") # give it a reproducible ordering w/factors
+) %>%
+group_by(aisle) %>% #re group
+arrange(desc(N)) #arrange in descending count
+
+# Create plotly object 
+
+top_5.df %>%
+rename(
+`Number of Purchases` = N,
+`Product Name` = product_name) %>%
+plot_ly(
+    x      = ~`Number of Purchases`,
+    y      = ~`Product Name`,
+    color  = ~ aisle,
+    type   = "bar",
+    colors = "viridis" 
+  ) %>%
+  layout(
+    title  = "# Orders of Top 5 Purchased Products in the Top 5 Aisles",
+    xaxis  = list(title = "# of Orders"),
+    legend = list(title=list(text="Top 5 Aisles"))
+  )
+
+
+```
+
